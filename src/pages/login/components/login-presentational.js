@@ -10,13 +10,35 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 import { PAGE_CONSTANTS } from "../../../constants/app-constants";
 
 const theme = createTheme();
 
+const validationSchema = yup.object({
+  email: yup
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required'),
+  password: yup
+    .string('Enter your password')
+    .min(8, 'Password should be of minimum 8 characters length')
+    .required('Password is required'),
+});
+
 const LoginPresentational = () => {
-    const handleSubmit = (event) => {
-		event.preventDefault();
+	const formik = useFormik({
+		initialValues: {
+		  email: 'foobar@example.com',
+		  password: 'foobar',
+		},
+		validationSchema: validationSchema,
+		onSubmit: (values) => handleSubmit(values),
+	  });
+	
+    const handleSubmit = (values) => {
+		alert(JSON.stringify(values, null, 2));
 		// const data = new FormData(event.currentTarget);
     	// console.log("🚀 ~ file: login-presentational.js:18 ~ handleSubmit ~ event:")
 	};
@@ -55,7 +77,7 @@ const LoginPresentational = () => {
 							component="form"
 							noValidate
 							sx={{ mt: 1 }}
-							onSubmit={handleSubmit}
+							onSubmit={formik.handleSubmit}
 						>
 							<TextField
 								margin="normal"
@@ -66,6 +88,10 @@ const LoginPresentational = () => {
 								name="email"
 								autoComplete="email"
 								autoFocus
+								value={formik.values.email}
+								onChange={formik.handleChange}
+								error={formik.touched.email && Boolean(formik.errors.email)}
+								helperText={formik.touched.email && formik.errors.email}
 							/>
 							<TextField
 								margin="normal"
@@ -76,6 +102,10 @@ const LoginPresentational = () => {
 								type="password"
 								id="password"
 								autoComplete="current-password"
+								value={formik.values.password}
+								onChange={formik.handleChange}
+								error={formik.touched.password && Boolean(formik.errors.password)}
+								helperText={formik.touched.password && formik.errors.password}
 							/>
 							<FormControlLabel
 								control={<Checkbox value="remember" color="primary" />}
