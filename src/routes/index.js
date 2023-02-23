@@ -1,5 +1,7 @@
 import React from 'react'
-
+import { Route, Routes as Switch } from 'react-router-dom';
+import Login from '../pages/login';
+import PatientsList from '../pages/patients/patients-list';
 
 const Routes = () => {
 	return (
@@ -13,7 +15,7 @@ const Routes = () => {
 				}
 			}>
 			<Switch>
-				<Route element={<PageLayout />}>
+				{/* <Route element={<PageLayout />}>
 					{ROUTES.map(({ route, Component }, index) => {
 						return (
 							<Route
@@ -28,12 +30,10 @@ const Routes = () => {
 							/>
 						);
 					})}
-					{/* <Route path="/loading" element={<Master />} /> */}
 					<Route exact path="*" element={<NoAccess />} />
-				</Route>
+				</Route> */}
 				<Route exact path="/login" element={<Login />} />
-				<Route exact path="/register" element={<Register />} />
-				<Route exact path="/branches" element={<OrganizationList />} />
+				<Route exact path="/" element={<PatientsList />} />
 			</Switch>
 		</div>
 	);

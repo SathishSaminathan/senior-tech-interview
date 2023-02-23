@@ -1,8 +1,8 @@
 import React from "react";
-import PatientListPresentational from "./patients-list-presentational";
+import PatientsListPresentational from "./patients-list-presentational";
 
-const PatientListFunctional = () => {
-	return <PatientListPresentational />;
+const PatientsListFunctional = () => {
+	return <PatientsListPresentational />;
 };
 
-export default PatientListFunctional;
+export default PatientsListFunctional;

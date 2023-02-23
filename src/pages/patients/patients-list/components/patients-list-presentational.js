@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const PatientListPresentational = () => {
-    return (
-        <div>
-            PatientListPresentational
-        </div>
-    )
-}
+const PatientsListPresentational = () => {
+	return <div>PatientsListPresentational</div>;
+};
 
-export default PatientListPresentational
+export default PatientsListPresentational;

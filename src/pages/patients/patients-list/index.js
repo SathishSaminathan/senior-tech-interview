@@ -1,10 +1,10 @@
 import React from 'react'
-import PatientListFunctional from './components/patients-list-functional'
+import PatientsListFunctional from './components/patients-list-functional'
 
-const PatientList = () => {
+const PatientsList = () => {
     return (
-        <PatientListFunctional />
+        <PatientsListFunctional />
     )
 }
 
-export default PatientList
+export default PatientsList
