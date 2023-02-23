@@ -7,12 +7,13 @@ export default function Button(theme) {
     MuiButton: {
       styleOverrides: {
         root: {
+          height: 50,
           '&:hover': {
             boxShadow: 'none',
           },
         },
         sizeLarge: {
-          height: 48,
+          height: 60,
         },
         containedInherit: {
           color: theme.palette.grey[800],
