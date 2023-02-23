@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -10,37 +11,51 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useFormik } from 'formik';
-import * as yup from 'yup';
+import { useFormik } from "formik";
+import * as yup from "yup";
 import { PAGE_CONSTANTS } from "../../../constants/app-constants";
-
-const theme = createTheme();
+import ComponentsOverrides from "../../../theme/overrides";
+import shadows from "../../../theme/shadows";
+import customShadows from "../../../theme/customShadows";
+import palette from "../../../theme/palette";
 
 const validationSchema = yup.object({
-  email: yup
-    .string('Enter your email')
-    .email('Enter a valid email')
-    .required('Email is required'),
-  password: yup
-    .string('Enter your password')
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
+	email: yup
+		.string("Enter your email")
+		.email("Enter a valid email")
+		.required("Email is required"),
+	password: yup
+		.string("Enter your password")
+		.min(8, "Password should be of minimum 8 characters length")
+		.required("Password is required"),
 });
 
 const LoginPresentational = () => {
+	const themeOptions = useMemo(
+		() => ({
+			palette: palette,
+			shape: { borderRadius: 6 },
+			shadows: shadows(),
+			customShadows: customShadows(),
+		}),
+		[]
+	);
+	const theme = createTheme(themeOptions);
+	theme.components = ComponentsOverrides(theme);
+
 	const formik = useFormik({
 		initialValues: {
-		  email: 'foobar@example.com',
-		  password: 'foobar',
+			email: "foobar@example.com",
+			password: "foobar",
 		},
 		validationSchema: validationSchema,
 		onSubmit: (values) => handleSubmit(values),
-	  });
-	
-    const handleSubmit = (values) => {
+	});
+
+	const handleSubmit = (values) => {
 		alert(JSON.stringify(values, null, 2));
 		// const data = new FormData(event.currentTarget);
-    	// console.log("🚀 ~ file: login-presentational.js:18 ~ handleSubmit ~ event:")
+		// console.log("🚀 ~ file: login-presentational.js:18 ~ handleSubmit ~ event:")
 	};
 
 	return (
@@ -104,7 +119,9 @@ const LoginPresentational = () => {
 								autoComplete="current-password"
 								value={formik.values.password}
 								onChange={formik.handleChange}
-								error={formik.touched.password && Boolean(formik.errors.password)}
+								error={
+									formik.touched.password && Boolean(formik.errors.password)
+								}
 								helperText={formik.touched.password && formik.errors.password}
 							/>
 							<FormControlLabel
@@ -139,4 +156,4 @@ const LoginPresentational = () => {
 	);
 };
 
-export default LoginPresentational
+export default LoginPresentational;
