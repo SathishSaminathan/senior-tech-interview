@@ -3,5 +3,6 @@ module.exports = {
 	API_URL: {
 		// patients APIs
 		GET_PATIENTS: '/patients',
+		GET_PATIENT: '/patient',
 	},
 };

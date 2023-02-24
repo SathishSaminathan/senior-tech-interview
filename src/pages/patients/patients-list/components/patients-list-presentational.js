@@ -11,11 +11,9 @@ import {
 	TableContainer,
 	IconButton,
 	TableHead,
-	Modal,
-	Fade,
-	Backdrop,
 } from "@mui/material";
 import { Icon } from "@iconify/react";
+import PatientViewModal from "./patient-view-modal";
 
 const TABLE_HEAD = [
 	{ id: "firstName", label: "Name", alignRight: false },
@@ -24,72 +22,6 @@ const TABLE_HEAD = [
 	{ id: "addressLine1", label: "Address", alignRight: false },
 	{ id: "postalCode", label: "Postal", alignRight: false },
 ];
-
-const style = {
-	position: "absolute",
-	top: "50%",
-	left: "50%",
-	transform: "translate(-50%, -50%)",
-	width: 400,
-	bgcolor: "background.paper",
-	boxShadow: 24,
-	p: 4,
-};
-
-const dataMapping = {
-	firstName: "First Name",
-	lastName: "Last Nameen",
-	gender: "Gender",
-	dateOfBirth: "DOB",
-	addressLine1: "Address Line 1",
-	addressLine2: "Address Line 2",
-	city: "City",
-	state: "State",
-	postalCode: "Postal Code",
-};
-
-const PatientViewModal = ({
-	patientViewModal,
-	togglePatientViewModal,
-	selectedPatient,
-}) => {
-	return (
-		<Modal
-			aria-labelledby="transition-modal-title"
-			aria-describedby="transition-modal-description"
-			open={patientViewModal}
-			onClose={togglePatientViewModal}
-			closeAfterTransition
-			slots={{ backdrop: Backdrop }}
-			slotProps={{
-				backdrop: {
-					timeout: 500,
-				},
-			}}
-		>
-			<Fade in={patientViewModal}>
-				<Box sx={style}>
-					<Typography id="transition-modal-title" variant="h6" component="h2">
-						Patient Detail
-					</Typography>
-					{Object.keys(selectedPatient || {})?.map(
-						(key) =>
-							dataMapping?.[key] && (
-								<Stack direction="row" spacing={2} sx={{ pt: 2 }}>
-									<Typography variant="subtitle2" noWrap>
-										{dataMapping?.[key]}:
-									</Typography>
-									<Typography variant="subtitle2" noWrap>
-										{selectedPatient[key]}
-									</Typography>
-								</Stack>
-							)
-					)}
-				</Box>
-			</Fade>
-		</Modal>
-	);
-};
 
 const PatientsListPresentational = ({
 	patients,
@@ -146,13 +78,13 @@ const PatientsListPresentational = ({
 											size="large"
 											color="inherit"
 											onClick={() => {
-												setSelectedPatient(row);
+												setSelectedPatient(row?.patientId);
 												togglePatientViewModal();
 											}}
 										>
 											<Box
 												component={Icon}
-												icon={"eva:menu-2-fill"}
+												icon={"eva:eye-outline"}
 												sx={{ width: 20, height: 20 }}
 											/>
 										</IconButton>

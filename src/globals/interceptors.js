@@ -19,8 +19,8 @@ const setupInterceptors = (store) => {
 		(response) => {
 			// Process response body
 			if (response.status && parseInt(response.status, 0) > 205) {
-				const resMessage = response?.data?.response_message || 'Something went wrong';
-				console.log("🚀 ~ file: interceptors.js:23 ~ setupInterceptors ~ resMessage:", resMessage)
+				// const resMessage = response?.data?.response_message || 'Something went wrong';
+				// console.log("🚀 ~ file: interceptors.js:23 ~ setupInterceptors ~ resMessage:", resMessage)
 
 				switch (response.status) {
 					case 500:

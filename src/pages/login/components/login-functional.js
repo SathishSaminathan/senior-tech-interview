@@ -37,8 +37,6 @@ const LoginFunctional = () => {
 			localStorage.setItem(APP_VARIABLES.ACCESS_TOKEN, "DUMMY_TEXT_FOR_TOKEN");
 			navigate("/");
 		}, 1500);
-		// const data = new FormData(event.currentTarget);
-		// console.log("🚀 ~ file: login-presentational.js:18 ~ handleSubmit ~ event:")
 	};
 
 	return <LoginPresentational {...{ formik, loading, handleLogin }} />;

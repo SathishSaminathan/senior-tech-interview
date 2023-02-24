@@ -13,6 +13,10 @@ const PatientsListFunctional = () => {
 	useEffect(() => {
 		dispatch(getPatients());
 	}, [dispatch]);
+	
+	useEffect(() => {
+		!patientViewModal && setSelectedPatient(null);
+	}, [patientViewModal]);
 
 	return <PatientsListPresentational {...{ patients, patientViewModal, togglePatientViewModal, selectedPatient, setSelectedPatient }} />;
 };
