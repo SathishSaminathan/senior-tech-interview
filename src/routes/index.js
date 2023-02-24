@@ -1,42 +1,27 @@
 import React from 'react'
 import { Route, Routes as Switch } from 'react-router-dom';
-import Login from '../pages/login';
-import PatientsList from '../pages/patients/patients-list';
+import DashboardLayout from 'layouts/dashboard-layout';
+import NoMatch from 'components/no-match';
+import Login from 'pages/login';
+import PatientsList from 'pages/patients/patients-list';
+import ProtectedRoute from './protected-route';
 
-const Routes = () => {
-	return (
-		<div
-			className="app_container"
-			style={
-				{
-					// overflowY: 'auto',
-					// overflowX: 'hidden',
-					// minHeight: '100vh',
+const Routes = () => (
+	<Switch>
+		<Route element={<DashboardLayout />}>
+			<Route
+				exact
+				path={'/'}
+				element={
+					<ProtectedRoute>
+						<PatientsList />
+					</ProtectedRoute>
 				}
-			}>
-			<Switch>
-				{/* <Route element={<PageLayout />}>
-					{ROUTES.map(({ route, Component }, index) => {
-						return (
-							<Route
-								key={index}
-								exact
-								path={route}
-								element={
-									<ProtectedRoute>
-										<Component />
-									</ProtectedRoute>
-								}
-							/>
-						);
-					})}
-					<Route exact path="*" element={<NoAccess />} />
-				</Route> */}
-				<Route exact path="/login" element={<Login />} />
-				<Route exact path="/" element={<PatientsList />} />
-			</Switch>
-		</div>
-	);
-};
+			/>
+			<Route exact path="*" element={<NoMatch />} />
+		</Route>
+		<Route exact path="/login" element={<Login />} />
+	</Switch>
+);
 
 export default Routes
