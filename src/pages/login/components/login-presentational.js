@@ -1,13 +1,20 @@
-import Button from '@mui/lab/LoadingButton';
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import { PAGE_CONSTANTS } from "../../../constants/app-constants";
+import Button from "@mui/lab/LoadingButton";
+import {
+	TextField,
+	FormControlLabel,
+	Checkbox,
+	Link,
+	Paper,
+	Box,
+	Grid,
+	Typography,
+} from "@mui/material";
+import { styled } from '@mui/material/styles';
+import { PAGE_CONSTANTS } from "constants/app-constants";
+
+const StyledImage = styled('img')({
+	width: "60%"
+});
 
 const LoginPresentational = ({ formik, loading }) => (
 	<Grid container component="main" sx={{ height: "100vh" }}>
@@ -16,7 +23,8 @@ const LoginPresentational = ({ formik, loading }) => (
 			sm={4}
 			md={7}
 			sx={{
-				backgroundImage: "url(https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)",
+				backgroundImage:
+					"url(https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)",
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
 				backgroundPosition: "center",
@@ -32,9 +40,8 @@ const LoginPresentational = ({ formik, loading }) => (
 					alignItems: "center",
 				}}
 			>
-				<img
+				<StyledImage
 					alt="logo"
-					style={{ width: "60%" }}
 					src="https://www.rxlightning.com/static/media/rx-logo.c7ccb7ae.png"
 				/>
 				<Typography component="h1" variant="h4">

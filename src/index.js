@@ -29,13 +29,13 @@ theme.components = ComponentsOverrides(theme);
 
 root.render(
 	<Provider store={store}>
-		<React.StrictMode>
+		{/* <React.StrictMode> */}
 			<BrowserRouter>
 				<ThemeProvider theme={theme}>
 					<App />
 				</ThemeProvider>
 			</BrowserRouter>
-		</React.StrictMode>
+		{/* </React.StrictMode> */}
 	</Provider>
 );
 
